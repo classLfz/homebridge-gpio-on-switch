@@ -1,41 +1,51 @@
 {
-  "private": true,
-  "displayName": "Plugin Name",
-  "name": "homebridge-plugin-name",
-  "version": "1.0.0",
-  "description": "A short description about what your plugin does.",
-  "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/USERNAME/GITHUB_PROJECT_NAME.git"
-  },
-  "bugs": {
-    "url": "https://github.com/USERNAME/GITHUB_PROJECT_NAME/issues"
-  },
-  "engines": {
-    "node": ">=10.17.0",
-    "homebridge": ">=1.3.0"
-  },
-  "main": "dist/index.js",
-  "scripts": {
-    "lint": "eslint src/**.ts --max-warnings=0",
-    "watch": "npm run build && npm link && nodemon",
-    "build": "rimraf ./dist && tsc",
-    "prepublishOnly": "npm run lint && npm run build"
-  },
-  "keywords": [
-    "homebridge-plugin"
-  ],
-  "dependencies": {},
-  "devDependencies": {
-    "@types/node": "^14.14.31",
-    "@typescript-eslint/eslint-plugin": "^4.16.1",
-    "@typescript-eslint/parser": "^4.16.1",
-    "eslint": "^7.21.0",
-    "homebridge": "^1.3.1",
-    "nodemon": "^2.0.7",
-    "rimraf": "^3.0.2",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.2"
-  }
+	"displayName": "homebridge-gpio-on-switch",
+	"name": "homebridge-gpio-on-switch",
+	"version": "0.5.0",
+	"description": "gpio on switch",
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/classlfz/homebridge-gpio-on-switch.git"
+	},
+	"bugs": {
+		"url": "https://github.com/classlfz/homebridge-gpio-on-switch/issues"
+	},
+	"engines": {
+		"node": ">=10.17.0",
+		"homebridge": ">=1.3.0"
+	},
+	"main": "dist/index.js",
+	"scripts": {
+		"lint": "eslint src/**.ts --max-warnings=0",
+		"lint:fix": "eslint src/**.ts --fix --max-warnings=0",
+		"watch": "npm run build && npm link && nodemon",
+		"build": "rimraf ./dist && tsc",
+		"prepublishOnly": "npm run lint && npm run build"
+	},
+	"keywords": [
+		"homebridge",
+		"gpio",
+		"on",
+		"switch"
+	],
+	"devDependencies": {
+		"@types/node": "^14.14.31",
+		"@types/rpio": "^2.4.2",
+		"@typescript-eslint/eslint-plugin": "^4.29.0",
+		"@typescript-eslint/parser": "^4.29.0",
+		"eslint": "^7.32.0",
+		"eslint-config-standard": "^16.0.3",
+		"eslint-plugin-import": "^2.23.4",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-promise": "^5.1.0",
+		"homebridge": "^1.3.1",
+		"nodemon": "^2.0.7",
+		"rimraf": "^3.0.2",
+		"ts-node": "^9.1.1",
+		"typescript": "^4.2.2"
+	},
+	"dependencies": {
+		"rpio": "^2.4.2"
+	}
 }

@@ -1,11 +1,8 @@
-import { API } from 'homebridge';
+import { API } from 'homebridge'
 
-import { PLATFORM_NAME } from './settings';
-import { ExampleHomebridgePlatform } from './platform';
+import { ACCESSORY_NAME } from './settings'
+import { SwitchAccessory } from './switchAccessory'
 
-/**
- * This method registers the platform with Homebridge
- */
 export = (api: API) => {
-  api.registerPlatform(PLATFORM_NAME, ExampleHomebridgePlatform);
-};
+	api.registerAccessory(ACCESSORY_NAME, SwitchAccessory)
+}
