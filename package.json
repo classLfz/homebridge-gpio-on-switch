@@ -1,7 +1,6 @@
 {
-	"displayName": "homebridge-gpio-on-switch",
 	"name": "homebridge-gpio-on-switch",
-	"version": "0.5.0",
+	"version": "1.0.0",
 	"description": "gpio on switch",
 	"license": "Apache-2.0",
 	"repository": {
@@ -24,7 +23,13 @@
 		"prepublishOnly": "npm run lint && npm run build"
 	},
 	"keywords": [
-		"homebridge-plugin"
+		"homebridge-plugin",
+		"homebridge",
+		"respberry",
+		"gpio",
+		"on",
+		"switch",
+		"homekit"
 	],
 	"devDependencies": {
 		"@types/node": "^14.14.31",

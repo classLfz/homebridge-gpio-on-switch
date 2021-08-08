@@ -9,8 +9,8 @@
 			"es2018"
 		],
 		"declaration": true,
-		"declarationMap": true,
-		"sourceMap": true,
+		"declarationMap": false,
+		"sourceMap": false,
 		"outDir": "./dist",
 		"rootDir": "./src",
 		"strict": true,

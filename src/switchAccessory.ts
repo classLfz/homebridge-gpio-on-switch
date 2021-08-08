@@ -1,31 +1,38 @@
 import { AccessoryConfig, AccessoryPlugin, API, Logger, Service } from 'homebridge'
 import rpio from 'rpio'
 
+const { version } = require('../package.json')
+
 export class SwitchAccessory implements AccessoryPlugin {
 	public readonly Service: typeof Service = this.api.hap.Service
 	public readonly switchService: any
 	public readonly informationService: Service
-	public on: boolean
 
 	constructor (
 		public readonly log: Logger,
 		public readonly config: AccessoryConfig,
 		public readonly api: API
 	) {
-		this.log.debug('initializing accessory: ', this.config.name)
+		this.log = log
+		this.config = config
+		this.api = api
+		this.log.debug('initializing accessory with config: ', this.config)
 
-		this.on = !!rpio.read(this.config.pin)
+		// rpio init
+		rpio.init({
+			mapping: 'gpio'
+		})
 
 		this.informationService = new this.api.hap.Service.AccessoryInformation()
 			.setCharacteristic(this.api.hap.Characteristic.Manufacturer, 'homebridge gpio on switch')
 			.setCharacteristic(this.api.hap.Characteristic.Model, 'RaspberryPI GPIO Switch')
-			.setCharacteristic(this.api.hap.Characteristic.SerialNumber, 'Version 1.0.0')
+			.setCharacteristic(this.api.hap.Characteristic.SerialNumber, 'Version ' + version)
 
 		this.switchService = new this.api.hap.Service.Switch(this.config.name)
 
 		this.switchService.getCharacteristic(this.api.hap.Characteristic.On)
-			.onGet(this.getOnHandler.bind(this))
-			.onSet(this.setOnHandler.bind(this))
+			.on('get', this.getOnHandler.bind(this))
+			.on('set', this.setOnHandler.bind(this))
 	}
 
 	getServices () {
@@ -35,15 +42,15 @@ export class SwitchAccessory implements AccessoryPlugin {
 		]
 	}
 
-	async getOnHandler () {
-		this.log.info('Getting switch state')
-		this.on = !!rpio.read(this.config.pin)
-		return this.on
+	getOnHandler (callback: any) {
+		const on = !!rpio.read(this.config.pin)
+		this.log.info('Getting switch state: ', on)
+		callback(null, on)
 	}
 
-	async setOnHandler (value: boolean) {
-		const newOn = value ? rpio.HIGH : rpio.LOW
-		rpio.write(this.config.pin, newOn)
-		this.log.info('Setting switch state to: ', newOn)
+	setOnHandler (value: boolean, callback: any) {
+		this.log.info('Setting switch state to: ', value)
+		rpio.open(this.config.pin, value ? rpio.HIGH : rpio.LOW)
+		callback(null)
 	}
 }
