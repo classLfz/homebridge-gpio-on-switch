@@ -1,4 +1,5 @@
 import { AccessoryConfig, AccessoryPlugin, API, Logger, Service } from 'homebridge'
+import { MANU_FACTURER, MODEL } from './settings'
 import rpio from 'rpio'
 
 const { version } = require('../package.json')
@@ -24,8 +25,8 @@ export class SwitchAccessory implements AccessoryPlugin {
 		})
 
 		this.informationService = new this.api.hap.Service.AccessoryInformation()
-			.setCharacteristic(this.api.hap.Characteristic.Manufacturer, 'homebridge gpio on switch')
-			.setCharacteristic(this.api.hap.Characteristic.Model, 'RaspberryPI GPIO Switch')
+			.setCharacteristic(this.api.hap.Characteristic.Manufacturer, MANU_FACTURER)
+			.setCharacteristic(this.api.hap.Characteristic.Model, MODEL)
 			.setCharacteristic(this.api.hap.Characteristic.SerialNumber, 'Version ' + version)
 
 		this.switchService = new this.api.hap.Service.Switch(this.config.name)
