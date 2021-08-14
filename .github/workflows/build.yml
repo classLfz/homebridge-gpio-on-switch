@@ -21,16 +21,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Lint the project
         run: npm run lint
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build the project
         run: npm run build
         env:
           CI: true
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
