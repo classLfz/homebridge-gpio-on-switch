@@ -51,7 +51,7 @@ export class SwitchAccessory implements AccessoryPlugin {
 
 	setOnHandler (value: boolean, callback: any) {
 		this.log.info('Setting switch state to: ', value)
-		rpio.open(this.config.pin, value ? rpio.HIGH : rpio.LOW)
+		rpio.open(this.config.pin, rpio.OUTPUT, value ? rpio.HIGH : rpio.LOW)
 		callback(null)
 	}
 }

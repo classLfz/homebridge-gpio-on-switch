@@ -1,6 +1,6 @@
 {
 	"name": "homebridge-gpio-on-switch",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "gpio on switch",
 	"license": "Apache-2.0",
 	"repository": {
